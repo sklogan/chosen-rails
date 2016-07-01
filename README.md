@@ -1,6 +1,8 @@
 # Chosen for rails asset pipeline
 
 [Chosen](https://github.com/harvesthq/chosen) is a library for making long, unwieldy select boxes more user friendly.
+This gem is forked from [Chosen-rails](https://github.com/tsechingho/chosen-rails) to add an option to display results based on the custom templates
+
 
 The `chosen-rails` gem integrates the `Chosen` with the Rails asset pipeline.
 
@@ -12,7 +14,7 @@ Include `chosen-rails` in Gemefile
 
 ```rb
 gem 'compass-rails'
-gem 'chosen-rails'
+gem 'chosen-rails', github: 'sklogan/chosen-rails'
 ```
 
 Then run `bundle install`
@@ -60,6 +62,8 @@ $ ->
     allow_single_deselect: true
     no_results_text: 'No results matched'
     width: '200px'
+    template: (data) ->
+      "<img src='" + data.img + "' />" + data.title
 ```
 
 Notice: `width` option is required since `Chosen 0.9.15`.

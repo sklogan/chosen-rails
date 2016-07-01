@@ -20,8 +20,8 @@ class SelectParser
       children: 0
       disabled: group.disabled,
       classes: group.className
-    this.add_option( option, group_position, group.disabled ) for option in group.childNodes
-
+    this.add_option( option, group_position, group.disabled ) for option in group.childNodes   
+        
   add_option: (option, group_position, group_disabled) ->
     if option.nodeName.toUpperCase() is "OPTION"
       if option.text != ""
@@ -35,6 +35,7 @@ class SelectParser
           html: option.innerHTML
           title: option.title if option.title
           selected: option.selected
+          data: option.dataset
           disabled: if group_disabled is true then group_disabled else option.disabled
           group_array_index: group_position
           group_label: if group_position? then @parsed[group_position].label else null

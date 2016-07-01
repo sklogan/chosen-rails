@@ -16,6 +16,7 @@ class AbstractChosen
   set_default_values: ->
     @click_test_action = (evt) => this.test_active_click(evt)
     @activate_action = (evt) => this.activate_field(evt)
+    @template = (data) => if @options.template? then @options.template(data) else false
     @active_field = false
     @mouse_on_container = false
     @results_showing = false
@@ -106,7 +107,10 @@ class AbstractChosen
     option_el.className = classes.join(" ")
     option_el.style.cssText = option.style
     option_el.setAttribute("data-option-array-index", option.array_index)
-    option_el.innerHTML = option.search_text
+    if @template(option.data)
+      option_el.innerHTML = @template(option.data)
+    else
+      option_el.innerHTML = option.search_text
     option_el.title = option.title if option.title
 
     this.outerHTML(option_el)
